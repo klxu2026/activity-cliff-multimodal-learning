@@ -1,0 +1,30 @@
+seed: 7
+device: cpu
+
+data:
+  num_samples: 128
+  batch_size: 16
+  num_nodes: 12
+  node_dim: 8
+  image_size: 32
+  smiles_vocab_size: 32
+  smiles_length: 24
+  cliff_threshold: 1.0
+  train_fraction: 0.8
+
+model:
+  hidden_dim: 64
+  embedding_dim: 32
+  dropout: 0.1
+
+training:
+  epochs: 3
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  contrastive_weight: 0.5
+  margin: 1.0
+
+logging:
+  output_dir: results/toy_run
+  csv_name: metrics.csv
+  tensorboard: true

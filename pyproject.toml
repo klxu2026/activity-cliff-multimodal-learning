@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "activity-cliff-multimodal-learning"
+version = "0.1.0"
+description = "Minimal scaffold for activity cliff-aware multimodal molecular representation learning."
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.1",
+    "pyyaml>=6.0",
+    "tensorboard>=2.14",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
