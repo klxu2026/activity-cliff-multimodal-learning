@@ -8,6 +8,7 @@ The codebase is intentionally small and runnable on synthetic toy data. It is se
 
 ```bash
 pip install -r requirements.txt
+python scripts/preprocess_activity_cliffs.py --config configs/preprocess_toy.yaml
 python scripts/train.py --config configs/toy.yaml
 python scripts/evaluate.py --config configs/toy.yaml --checkpoint results/toy_run/model.pt
 pytest
@@ -25,6 +26,29 @@ Training writes CSV metrics to `results/toy_run/metrics.csv` and TensorBoard log
 - YAML-driven train/evaluate scripts.
 - CSV logging and optional TensorBoard logging.
 - Unit tests for data loading, model forward pass, loss computation, and toy training.
+
+## Activity Cliff Preprocessing
+
+The preprocessing entry point converts assay tables into activity cliff learning artifacts:
+
+```bash
+python scripts/preprocess_activity_cliffs.py --config configs/preprocess_toy.yaml
+```
+
+Input rows must include molecular SMILES, target ID, and an activity value such as pIC50. Additional assay metadata columns are preserved in `molecules.csv`.
+
+Generated outputs include:
+
+- `molecules.csv`: canonical SMILES, randomized SMILES, Murcko scaffold, graph path, image path, and scaffold split.
+- `pairs.csv`: matched molecular pairs within each target, Tanimoto similarity, activity gap, cliff labels, and split.
+- `splits.csv`: molecule-level train/val/test assignment grouped by target and scaffold.
+- `graphs/*.json`: atom and bond features for graph models.
+- `images/*.png`: 2D molecular depictions.
+
+Definitions:
+
+- Activity cliff pair: Tanimoto similarity >= 0.85 and activity difference >= 1.0 log unit.
+- Similar non-cliff pair: Tanimoto similarity >= 0.85 and activity difference < 0.3 log unit.
 
 ## Structure
 

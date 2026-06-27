@@ -1,0 +1,24 @@
+input_csv: data/raw/toy_activity.csv
+output_dir: data/processed/toy_activity
+
+columns:
+  smiles: smiles
+  target_id: target_id
+  activity: pIC50
+
+pairing:
+  tanimoto_threshold: 0.85
+  cliff_activity_gap: 1.0
+  non_cliff_activity_gap: 0.3
+  fingerprint_radius: 2
+  fingerprint_bits: 2048
+
+features:
+  randomized_smiles: 3
+  image_size: [256, 256]
+
+splits:
+  train_fraction: 0.8
+  val_fraction: 0.1
+  test_fraction: 0.1
+  seed: 13

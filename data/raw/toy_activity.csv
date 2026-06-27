@@ -1,0 +1,9 @@
+smiles,target_id,pIC50,assay_type
+CCO,T1,5.0,binding
+CCO,T1,6.2,binding
+CCN,T1,5.1,binding
+CCN,T1,5.2,binding
+c1ccccc1,T2,7.0,functional
+c1ccccc1,T2,8.1,functional
+Cc1ccccc1,T2,7.1,functional
+Cc1ccccc1,T2,7.2,functional

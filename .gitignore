@@ -19,5 +19,6 @@ data/raw/**/*
 data/processed/**/*
 data/splits/**/*
 !data/raw/.gitkeep
+!data/raw/toy_activity.csv
 !data/processed/.gitkeep
 !data/splits/.gitkeep
