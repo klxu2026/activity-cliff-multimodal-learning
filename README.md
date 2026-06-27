@@ -9,6 +9,7 @@ The codebase is intentionally small and runnable on synthetic toy data. It is se
 ```bash
 pip install -r requirements.txt
 python scripts/preprocess_activity_cliffs.py --config configs/preprocess_toy.yaml
+python scripts/make_figure1_collapse.py --config configs/figure1.yaml
 python scripts/train.py --config configs/toy.yaml
 python scripts/evaluate.py --config configs/toy.yaml --checkpoint results/toy_run/model.pt
 pytest
@@ -49,6 +50,29 @@ Definitions:
 
 - Activity cliff pair: Tanimoto similarity >= 0.85 and activity difference >= 1.0 log unit.
 - Similar non-cliff pair: Tanimoto similarity >= 0.85 and activity difference < 0.3 log unit.
+
+## Figure 1: Representation Collapse
+
+The Figure 1 analysis tests whether existing molecular encoders place activity cliff pairs too close in representation space. It computes:
+
+- structural similarity,
+- embedding distance,
+- activity gap,
+- cliff collapse index = embedding distance / activity gap.
+
+Run:
+
+```bash
+python scripts/make_figure1_collapse.py --config configs/figure1.yaml
+```
+
+Outputs are written to `figures/figure1/`:
+
+- `figure1_pair_metrics.csv`
+- `figure1_representation_collapse.pdf`
+- `figure1_representation_collapse.svg`
+
+The first scaffold uses RDKit Morgan fingerprints as the baseline existing molecular encoder. A low collapse index for cliff pairs indicates activity-sensitive representation collapse: structurally similar molecules with large activity differences remain too close in the encoder space.
 
 ## Structure
 

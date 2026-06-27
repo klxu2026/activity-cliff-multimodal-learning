@@ -1,0 +1,24 @@
+input_csv: data/raw/toy_activity.csv
+processed_dir: data/processed/toy_activity
+output_dir: figures/figure1
+
+columns:
+  smiles: smiles
+  target_id: target_id
+  activity: pIC50
+
+pairing:
+  tanimoto_threshold: 0.85
+  cliff_activity_gap: 1.0
+  non_cliff_activity_gap: 0.3
+  random_pair_count: 64
+  random_seed: 17
+
+encoder:
+  name: rdkit_morgan
+  fingerprint_radius: 2
+  fingerprint_bits: 2048
+
+plot:
+  title: Activity-sensitive representation collapse in existing molecular encoders
+  figure_name: figure1_representation_collapse
